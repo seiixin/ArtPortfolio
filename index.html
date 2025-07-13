@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Samyang's Portfolio</title>
+</head>
+<body>
+    <header>
+    <div class="intro-container">
+        <div class="intro-text">
+        <h1>Hello! I'm Samyang</h1>
+        <p>Digital Artist & Webtoon Creator</p>
+        </div>
+        <img src="Images/pfp.jpg" alt="Samyang Profile" class="profile-pic" />
+    </div>
+    </header>
+
+<section id="services">
+  <h2>Why do you need my Art Service?</h2>
+  <div class="services-container">
+    <div class="service-slider">
+      <div class="slider-wrapper" id="slider-wrapper">
+        <img src="Images/Service-Sample.jpg" alt="Sample 1" />
+        <img src="Images/Service-Sample2.jpg" alt="Sample 2" />
+        <img src="Images/Service-Sample3.jpg" alt="Sample 3" />
+      </div>
+      <div class="slider-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <ul class="services-list">
+      <li><strong>Branding assets</strong> – logos, mascots, and visuals to define your brand’s style</li>
+      <li><strong>YouTube avatars & banners</strong> – to create a unique channel look</li>
+      <li><strong>Twitch emotes & badges</strong> – to add personality to your streams</li>
+      <li><strong>Social media icons & headers</strong> – to keep your profiles consistent and eye-catching</li>
+      <li><strong>Book cover illustrations</strong> – to make your story stand out</li>
+      <li><strong>Webcomic panels & covers</strong> – to help tell your story visually</li>
+      <li><strong>Visual assets for games or apps</strong> – sprites, backgrounds, UI</li>
+      <li><strong>Character sheets & references</strong> – for OCs, games, or comics</li>
+      <li><strong>Illustrations for blogs, articles, or marketing</strong> – to make your content more engaging</li>
+      <li><strong>Merch designs</strong> – stickers, shirts, prints, and more</li>
+      <li><strong>Custom portraits & gifts</strong> – special art for someone you care about</li>
+    </ul>
+  </div>
+</section>
+
+
+  <section id="projects">
+    <h2>🎨 My Projects</h2>
+    <div class="project-cards">
+      <div class="project-card">
+        <img src="Images/Project-1.jpg" alt="Project 1">
+      </div>
+      <div class="project-card">
+        <img src="Images/Project-2.jpg" alt="Project 2">
+      </div>
+      <div class="project-card">
+        <img src="Images/Project-3.jpg" alt="Project 3">
+      </div>
+    </div>
+  </section>
+
+<section id="commission">
+  <h2>🖌️ Book a Commission</h2>
+  <div class="commission-cards">
+    <div class="commission-card">
+      <img src="Images/Bust-up-Sample.jpg" alt="Bust-up sample">
+      <h3>Bust-up</h3>
+      <p>300php</p>
+    </div>
+    <div class="commission-card">
+      <img src="Images/Thigh-Up-Sample.jpg" alt="Thigh-up sample">
+      <h3>Thigh-up</h3>
+      <p>500php</p>
+    </div>
+    <div class="commission-card">
+      <img src="Images/With-Background-Sample.jpg" alt="With Background sample">
+      <h3>With Background</h3>
+      <p>+100php</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form action="https://formspree.io/f/xzzvpelv" method="POST" id="contact-form">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="tel" name="phone" placeholder="Number">
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="subject" placeholder="Subject">
+    <textarea name="message" placeholder="Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+  <p id="thank-you-message" style="display: none; color: #ccc; margin-top: 10px;">
+    Thank you! Your message has been sent.
+  </p>
+</section>
+
+<script>
+
+    // HERO SLIDER FUNCTIONALITY
+  const wrapper = document.getElementById('slider-wrapper');
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  let current = 0;
+
+  function showSlide(index) {
+    wrapper.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  }
+
+  function nextSlide() {
+    current = (current + 1) % dots.length;
+    showSlide(current);
+  }
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      current = idx;
+      showSlide(current);
+    });
+  });
+
+  setInterval(nextSlide, 4000); // change every 4 seconds
+
+  //Contact form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+    fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        form.reset();
+        document.getElementById('thank-you-message').style.display = 'block';
+      } else {
+        alert('Oops! There was a problem submitting your form.');
+      }
+    }).catch(() => {
+      alert('Oops! There was a problem submitting your form.');
+    });
+  });
+</script>
+
+</body>
+</html>
