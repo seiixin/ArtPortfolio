@@ -1,26 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Samyang's Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samyang's Portfolio</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* NAVBAR ONLY */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: background 0.3s;
+}
+.nav-container {
+  max-width: 1200px; margin: auto;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 20px;
+}
+.nav-logo {
+  font-size: 24px; font-weight: bold; color: #fff; text-decoration: none;
+}
+.nav-menu {
+  list-style: none; display: flex; gap: 25px; margin: 0; padding: 0;
+}
+.nav-link {
+  color: #fff; font-weight: 500; padding: 8px 12px; border-radius: 20px;
+  text-decoration: none; transition: color 0.3s;
+}
+.nav-link:hover, .nav-link.active { color: #ff6b6b; }
+.nav-toggle {
+  display: none; background: none; border: none;
+  font-size: 26px; color: #fff; cursor: pointer;
+}
+.nav-toggle:hover, .nav-toggle.active { color: #ff6b6b; }
+@media(max-width:768px){
+  .nav-toggle { display: block; }
+  .nav-menu {
+    position: fixed; top: 60px; left: -100%;
+    flex-direction: column; width: 100%; text-align: center;
+    background: rgba(0,0,0,0.95); padding: 20px 0; gap: 15px;
+    transition: left 0.3s;
+  }
+  .nav-menu.active { left: 0; }
+}
+</style>
 </head>
 <body>
-    <header>
-    <div class="intro-container">
-        <div class="intro-text">
-        <h1>Hello! I'm Samyang</h1>
-        <p>Digital Artist & Webtoon Creator</p>
-        </div>
-        <img src="Images/pfp.jpg" alt="Samyang Profile" class="profile-pic" />
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">Samyang</a>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#commission" class="nav-link">Commission</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle">☰</button>
+  </div>
+</nav>
+
+<header id="home">
+  <div class="intro-container">
+    <div class="intro-text">
+      <h1>Hello! I'm Samyang</h1>
+      <p>Digital Artist & Webtoon Creator</p>
     </div>
-    </header>
+    <img src="Images/pfp.jpg" alt="Samyang Profile" class="profile-pic" />
+  </div>
+</header>
 
 <section id="services">
   <h2>Why do you need my Art Service?</h2>
   <div class="services-container">
-    <!-- Left: image hero slider -->
     <div class="service-slider">
       <div class="slider-wrapper" id="slider-wrapper">
         <img src="Images/Service-Sample.jpg" alt="Sample 1" />
@@ -33,14 +87,13 @@
         <span class="dot" onclick="goToImageSlide(2)"></span>
       </div>
     </div>
-
     <!-- Right: content hero slider -->
 <div class="hero-slider">
 <table style="width:100%; border-collapse: separate; border-spacing: 20px;">
     <tr>
       <td class="service-item">
         <h3><i class="fas fa-palette"></i> Branding assets</h3>
-        <p>Logos, mascots, and visuals to define your brand’s style</p>
+        <p>Logos, mascots, and visuals to define your brand's style</p>
       </td>
       <td class="service-item">
         <h3><i class="fab fa-youtube"></i> YouTube avatars & banners</h3>
@@ -87,42 +140,33 @@
   </table>
 </div>
 </section>
-  <section id="projects">
-    <h2>🎨 My Projects</h2>
-    <div class="project-cards">
-      <div class="project-card">
-        <img src="Images/Project-1.jpg" alt="Project 1">
-      </div>
-      <div class="project-card">
-        <img src="Images/Project-2.jpg" alt="Project 2">
-      </div>
-      <div class="project-card">
-        <img src="Images/Project-3.jpg" alt="Project 3">
-      </div>
-    </div>
-  </section>
 
-<section id="commission">
-  <h2>🖌️ Book a Commission</h2>
-  <div class="commission-cards">
-    <div class="commission-card">
-      <img src="Images/Bust-up-Sample.jpg" alt="Bust-up sample">
-      <h2>Bust-up</h2>
-      <h3>₱800 | $14–$15</h3>
-    </div>
-    <div class="commission-card">
-      <img src="Images/Thigh-Up-Sample.jpg" alt="Thigh-up sample">
-      <h2>Thigh-up</h2>
-      <h3>₱1,200 | $21–$22</h3>
-    </div>
-    <div class="commission-card">
-      <img src="Images/With-Background-Sample.jpg" alt="With Background sample">
-      <h2>With Background</h2>
-      <h3>+₱300–₱500 | +$5–$9</h3>
-    </div>
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="project-cards">
+    <div class="project-card"><img src="Images/Project-1.jpg" alt="Project 1"></div>
+    <div class="project-card"><img src="Images/Project-2.jpg" alt="Project 2"></div>
+    <div class="project-card"><img src="Images/Project-3.jpg" alt="Project 3"></div>
   </div>
 </section>
 
+<section id="commission">
+  <h2>Book a Commission</h2>
+  <div class="commission-cards">
+    <div class="commission-card">
+      <img src="Images/Bust-up-Sample.jpg" alt="Bust-up sample">
+      <h2>Bust-up</h2><h3>₱800 | $14–$15</h3>
+    </div>
+    <div class="commission-card">
+      <img src="Images/Thigh-Up-Sample.jpg" alt="Thigh-up sample">
+      <h2>Thigh-up</h2><h3>₱1,200 | $21–$22</h3>
+    </div>
+    <div class="commission-card">
+      <img src="Images/With-Background-Sample.jpg" alt="With Background sample">
+      <h2>With Background</h2><h3>+₱300–₱500 | +$5–$9</h3>
+    </div>
+  </div>
+</section>
 
 <section id="contact">
   <h2>Contact Me</h2>
@@ -134,55 +178,75 @@
     <textarea name="message" placeholder="Message" required></textarea>
     <button type="submit">Send</button>
   </form>
-  <p id="thank-you-message" style="display: none; color: #ccc; margin-top: 10px;">
-    Thank you! Your message has been sent.
-  </p>
+  <p id="thank-you-message" style="display: none; color: #ccc; margin-top: 10px;">Thank you! Your message has been sent.</p>
 </section>
 
 <script>
-  // IMAGE HERO SLIDER FUNCTIONALITY
-  const imageWrapper = document.getElementById('slider-wrapper');
-  const imageDots = document.querySelectorAll('.slider-dots .dot');
-  let currentImageSlide = 0;
+// Navbar toggle
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+const navbar = document.getElementById('navbar');
+const navLinks = document.querySelectorAll('.nav-link');
 
-  function showImageSlide(index) {
-    imageWrapper.style.transform = `translateX(-${index * 100}%)`;
-    imageDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-    currentImageSlide = index;
+navToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  navToggle.classList.toggle('active');
+});
+navLinks.forEach(link => link.addEventListener('click', () => {
+  navMenu.classList.remove('active');
+  navToggle.classList.remove('active');
+}));
+document.addEventListener('click', (e) => {
+  if (!navbar.contains(e.target)) {
+    navMenu.classList.remove('active');
+    navToggle.classList.remove('active');
   }
+});
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
 
-  function nextImageSlide() {
-    let next = (currentImageSlide + 1) % imageDots.length;
-    showImageSlide(next);
-  }
-
-  imageDots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => {
-      showImageSlide(idx);
-    });
+// Active link highlight
+window.addEventListener('scroll', () => {
+  let current = '';
+  document.querySelectorAll('section, header').forEach(section => {
+    if (window.scrollY >= section.offsetTop - 200) {
+      current = section.getAttribute('id');
+    }
   });
-
-  setInterval(nextImageSlide, 4000); // change every 4 seconds
-
-  // CONTACT FORM SUBMISSION
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = this;
-    fetch(form.action, {
-      method: form.method,
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        form.reset();
-        document.getElementById('thank-you-message').style.display = 'block';
-      } else {
-        alert('Oops! There was a problem submitting your form.');
-      }
-    }).catch(() => {
-      alert('Oops! There was a problem submitting your form.');
-    });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
   });
+});
+
+// Slider
+const imageWrapper = document.getElementById('slider-wrapper');
+const imageDots = document.querySelectorAll('.slider-dots .dot');
+let currentImageSlide = 0;
+
+function showImageSlide(index) {
+  imageWrapper.style.transform = `translateX(-${index * 100}%)`;
+  imageDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  currentImageSlide = index;
+}
+window.goToImageSlide = showImageSlide;
+setInterval(() => { showImageSlide((currentImageSlide + 1) % imageDots.length); }, 4000);
+
+// Contact
+document.getElementById('contact-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.target;
+  fetch(form.action, {
+    method: form.method, body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      form.reset();
+      document.getElementById('thank-you-message').style.display = 'block';
+    } else { alert('Oops! There was a problem submitting your form.'); }
+  }).catch(() => alert('Oops! There was a problem submitting your form.'));
+});
 </script>
 </body>
 </html>
