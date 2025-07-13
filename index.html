@@ -20,6 +20,7 @@
 <section id="services">
   <h2>Why do you need my Art Service?</h2>
   <div class="services-container">
+    <!-- Left: image hero slider -->
     <div class="service-slider">
       <div class="slider-wrapper" id="slider-wrapper">
         <img src="Images/Service-Sample.jpg" alt="Sample 1" />
@@ -27,28 +28,65 @@
         <img src="Images/Service-Sample3.jpg" alt="Sample 3" />
       </div>
       <div class="slider-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <span class="dot active" onclick="goToImageSlide(0)"></span>
+        <span class="dot" onclick="goToImageSlide(1)"></span>
+        <span class="dot" onclick="goToImageSlide(2)"></span>
       </div>
     </div>
-    <ul class="services-list">
-      <li><strong>Branding assets</strong> – logos, mascots, and visuals to define your brand’s style</li>
-      <li><strong>YouTube avatars & banners</strong> – to create a unique channel look</li>
-      <li><strong>Twitch emotes & badges</strong> – to add personality to your streams</li>
-      <li><strong>Social media icons & headers</strong> – to keep your profiles consistent and eye-catching</li>
-      <li><strong>Book cover illustrations</strong> – to make your story stand out</li>
-      <li><strong>Webcomic panels & covers</strong> – to help tell your story visually</li>
-      <li><strong>Visual assets for games or apps</strong> – sprites, backgrounds, UI</li>
-      <li><strong>Character sheets & references</strong> – for OCs, games, or comics</li>
-      <li><strong>Illustrations for blogs, articles, or marketing</strong> – to make your content more engaging</li>
-      <li><strong>Merch designs</strong> – stickers, shirts, prints, and more</li>
-      <li><strong>Custom portraits & gifts</strong> – special art for someone you care about</li>
-    </ul>
-  </div>
+
+    <!-- Right: content hero slider -->
+<div class="hero-slider">
+<table style="width:100%; border-collapse: separate; border-spacing: 20px;">
+    <tr>
+      <td class="service-item">
+        <h3><i class="fas fa-palette"></i> Branding assets</h3>
+        <p>Logos, mascots, and visuals to define your brand’s style</p>
+      </td>
+      <td class="service-item">
+        <h3><i class="fab fa-youtube"></i> YouTube avatars & banners</h3>
+        <p>Create a unique channel look</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="service-item">
+        <h3><i class="fab fa-twitch"></i> Twitch emotes & badges</h3>
+        <p>Add personality to your streams</p>
+      </td>
+      <td class="service-item">
+        <h3><i class="fas fa-book"></i> Book cover illustrations</h3>
+        <p>Make your story stand out</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="service-item">
+        <h3><i class="fas fa-book-open"></i> Webcomic panels & covers</h3>
+        <p>Help tell your story visually</p>
+      </td>
+      <td class="service-item">
+        <h3><i class="fas fa-gamepad"></i> Visual assets for games or apps</h3>
+        <p>Sprites, backgrounds, UI</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="service-item">
+        <h3><i class="fas fa-user"></i> Character sheets & references</h3>
+        <p>For OCs, games, or comics</p>
+      </td>
+      <td class="service-item">
+        <h3><i class="fas fa-gift"></i> Merch designs</h3>
+        <p>Stickers, shirts, prints, and more</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="service-item">
+        <h3><i class="fas fa-heart"></i> Custom portraits & gifts</h3>
+        <p>Special art for someone you care about</p>
+      </td>
+      <td></td>
+    </tr>
+  </table>
+</div>
 </section>
-
-
   <section id="projects">
     <h2>🎨 My Projects</h2>
     <div class="project-cards">
@@ -69,18 +107,18 @@
   <div class="commission-cards">
     <div class="commission-card">
       <img src="Images/Bust-up-Sample.jpg" alt="Bust-up sample">
-      <h3>Bust-up</h3>
-      <p>300php</p>
+      <h2>Bust-up</h2>
+      <h3>₱800 | $14–$15</h3>
     </div>
     <div class="commission-card">
       <img src="Images/Thigh-Up-Sample.jpg" alt="Thigh-up sample">
-      <h3>Thigh-up</h3>
-      <p>500php</p>
+      <h2>Thigh-up</h2>
+      <h3>₱1,200 | $21–$22</h3>
     </div>
     <div class="commission-card">
       <img src="Images/With-Background-Sample.jpg" alt="With Background sample">
-      <h3>With Background</h3>
-      <p>+100php</p>
+      <h2>With Background</h2>
+      <h3>+₱300–₱500 | +$5–$9</h3>
     </div>
   </div>
 </section>
@@ -102,33 +140,32 @@
 </section>
 
 <script>
+  // IMAGE HERO SLIDER FUNCTIONALITY
+  const imageWrapper = document.getElementById('slider-wrapper');
+  const imageDots = document.querySelectorAll('.slider-dots .dot');
+  let currentImageSlide = 0;
 
-    // HERO SLIDER FUNCTIONALITY
-  const wrapper = document.getElementById('slider-wrapper');
-  const dots = document.querySelectorAll('.slider-dots .dot');
-  let current = 0;
-
-  function showSlide(index) {
-    wrapper.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  function showImageSlide(index) {
+    imageWrapper.style.transform = `translateX(-${index * 100}%)`;
+    imageDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    currentImageSlide = index;
   }
 
-  function nextSlide() {
-    current = (current + 1) % dots.length;
-    showSlide(current);
+  function nextImageSlide() {
+    let next = (currentImageSlide + 1) % imageDots.length;
+    showImageSlide(next);
   }
 
-  dots.forEach((dot, idx) => {
+  imageDots.forEach((dot, idx) => {
     dot.addEventListener('click', () => {
-      current = idx;
-      showSlide(current);
+      showImageSlide(idx);
     });
   });
 
-  setInterval(nextSlide, 4000); // change every 4 seconds
+  setInterval(nextImageSlide, 4000); // change every 4 seconds
 
-  //Contact form submission
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+  // CONTACT FORM SUBMISSION
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const form = this;
     fetch(form.action, {
@@ -147,6 +184,5 @@
     });
   });
 </script>
-
 </body>
 </html>
