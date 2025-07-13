@@ -239,6 +239,10 @@ input:focus, textarea:focus {
 .commission-card:hover {
   transform: translateY(-5px);
 }
+h2 {
+  text-align: center;
+}
+
 
 .commission-card img {
   width: 100%;
